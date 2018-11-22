@@ -3,6 +3,7 @@
  */
 $(function() {
    firebase.database().ref('members').on('value', (snapshot) => {
+     $('#memberStatus').empty();
       snapshot.forEach((memSnap) => {
         console.log(memSnap.val());
         const statusText = getStatusName(memSnap.child('status').val());
