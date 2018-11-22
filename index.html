@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,12 +11,27 @@
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <style type="text/css">
-  .btn-fix {
-    padding: 0;
-    border: none;
-    white-space: normal;
-  }
+    .btn-fix {
+      padding: 0;
+      border: none;
+      white-space: normal;
+    }
   </style>
+
+  <!--Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBSdNz4cIFipDnyow5bxvOi-M_ZyEVOya4",
+      authDomain: "hlmanager-32609.firebaseapp.com",
+      databaseURL: "https://hlmanager-32609.firebaseio.com",
+      projectId: "hlmanager-32609",
+      storageBucket: "hlmanager-32609.appspot.com",
+      messagingSenderId: "166777674806"
+    };
+    firebase.initializeApp(config);
+  </script>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,6 +40,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+
 <body>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -58,4 +75,5 @@
   </div>
   <!-- ステータス詳細モーダルここまで-->
 </body>
+
 </html>
