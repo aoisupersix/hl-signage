@@ -43,7 +43,7 @@ function getStatusColor(statusId) {
  */
 function addCard(name, statusText, color){
   $('#memberStatus').append(
-    $('<div class="card" style="margin: 5pt;width: 11rem;height: 9rem;"></div>').addClass('bg-' + color)
+    $('<div class="card" style="margin: 7pt;width: 15.7rem;height: 10.5rem;"></div>').addClass('bg-' + color)
     .append($('<a href="#" class="btn btn-fix"></a>')
       .attr({
         'onClick': 'showStatusDetail(this)',
