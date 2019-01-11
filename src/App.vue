@@ -1,29 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+<div id="app">
+  <h1 class="display-1" style="text-align: center;">Hayakawa Laboratory</h1>
+  <b-card-group columns class="md-1">
+    <b-card bg-variant="primary"
+      header="早川"
+      class="text-center status-card card-primary"
+      v-for="member in members">
+      <p class="card-text text-center">在室</p>
+    </b-card>
+    </b-card-group>
+</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import { firebaseDatabase } from '@/main';
+import CardList from './components/CardList.vue';
 
 @Component({
   components: {
-    HelloWorld,
+    CardList,
   },
 })
-export default class App extends Vue {}
-</script>
+export default class App extends Vue {
+  private members = [1,2,3];
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  public async created(): Promise<void> {
+    const stateSnap = await firebaseDatabase.ref('status').once('value');
+    console.log(stateSnap.val());
+  }
 }
+</script>
+<style>
+ .status-card {
+   margin: 5px;
+   max-width: 11.2rem;
+   max-height: 9.3rem;
+ }
+ .card-primary {
+   background-color: #65ace4 !important;
+   color: #ffffff !important;
+ }
 </style>
