@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { firebaseDatabase } from '@/main';
-import StatusCard from './components/StatusCard/StatusCard.vue';
+import { Component, Vue } from 'vue-property-decorator'
+import { firebaseDatabase } from '@/main'
+import StatusCard from './components/StatusCard/StatusCard.vue'
 
 @Component({
   components: {
@@ -16,19 +16,19 @@ import StatusCard from './components/StatusCard/StatusCard.vue';
   },
 })
 export default class App extends Vue {
-  private states = [];
-  private members = [];
-
-  private showModal(memberId: number): void {
-    console.log('showModal' + memberId);
-  }
+  private states = []
+  private members = []
 
   public async created(): Promise<void> {
-    const stateSnap = await firebaseDatabase.ref('status').once('value');
-    this.states = stateSnap.val();
+    const stateSnap = await firebaseDatabase.ref('status').once('value')
+    this.states = stateSnap.val()
     firebaseDatabase.ref('members').on('value', (snap) => {
-      this.members = snap!.val();
-    });
+      this.members = snap!.val()
+    })
+  }
+
+  private showModal(memberId: number): void {
+    console.log('showModal' + memberId)
   }
 }
 </script>
