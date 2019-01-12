@@ -1,4 +1,5 @@
 import { Component, Prop, Vue, Emit } from 'vue-property-decorator'
+import { firebaseDatabase } from '@/main'
 
 @Component
 export default class StatusModal extends Vue {
@@ -49,7 +50,22 @@ export default class StatusModal extends Vue {
     return this.states[this.member.status]
   }
 
+  /**
+   * メンバー名を取得します
+   */
   private get memberName(): string {
     return this.member.last_name + ' ' + this.member.first_name
+  }
+
+  /**
+   * モーダルで表示しているメンバーの在室状況を更新します。
+   * @param statusId 在室状況ID
+   */
+  private updateStatus(statusId: string) {
+    // TODO Authが必要な処理
+    firebaseDatabase.ref('members/' + this.member.member_id).update({
+      status: statusId
+    })
+    this.modalShow = false
   }
 }

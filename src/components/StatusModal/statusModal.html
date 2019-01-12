@@ -10,6 +10,6 @@
   <hr />
   <h6>在室状況更新：</h6>
   <b-button-group size="lg" v-for="state in states">
-    <b-button class="btn-status" :class="state.color">{{ state.name }}</b-button>
+    <b-button class="btn-status" :class="state.color" @click="updateStatus(state.status_id)">{{ state.name }}</b-button>
   </b-button-group>
 </b-modal>
