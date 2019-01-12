@@ -1,0 +1,4 @@
+<b-modal id="status-modal" size="lg" title="在室状況詳細" v-model="modalShow" v-if="members !== undefined && states !== undefined && memberId !== -1">
+  {{ members[memberId].last_name + ' ' + members[memberId].first_name }}
+  <b-button>在室</b-button>
+</b-modal>

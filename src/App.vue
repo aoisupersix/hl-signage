@@ -2,6 +2,7 @@
 <div id="app">
   <h1 class="display-1" style="text-align: center;">Hayakawa Laboratory</h1>
   <StatusCard :members="members" :states="states" @showModal="showModal" />
+  <StatusModal v-model="modalShow" :members="members" :states="states" :member-id="modalShowingMemberId" />
 </div>
 </template>
 
@@ -9,15 +10,20 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { firebaseDatabase } from '@/main'
 import StatusCard from './components/StatusCard/StatusCard.vue'
+import StatusModal from './components/StatusModal/StatusModal.vue'
 
 @Component({
   components: {
     StatusCard,
+    StatusModal
   },
 })
 export default class App extends Vue {
+
   private states = []
   private members = []
+  private modalShowingMemberId = -1
+  private modalShow: boolean = false
 
   public async created(): Promise<void> {
     const stateSnap = await firebaseDatabase.ref('status').once('value')
@@ -28,7 +34,13 @@ export default class App extends Vue {
   }
 
   private showModal(memberId: number): void {
-    console.log('showModal' + memberId)
+    this.modalShowingMemberId = memberId
+    this.modalShow = true
+  }
+
+  private changeModalStatus(isShowing: boolean): void {
+    console.log('isShowing:' + isShowing)
+    this.modalShow = isShowing
   }
 }
 </script>
