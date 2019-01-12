@@ -3,7 +3,7 @@
     class="text-center status-card card-primary"
     v-for="member in members"
     :key="member.member_id"
-    :class="'card-' + states[member.status].color">
+    :class="states[member.status].color">
     <a href="#" class="btn btn-fix" @click="click(member.member_id)">
       <h4 class="card-header">{{ member.last_name + " " + member.first_name }}</h4>
       <b-card-body>

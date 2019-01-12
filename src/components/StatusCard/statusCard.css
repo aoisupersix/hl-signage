@@ -4,18 +4,6 @@
   width: 11.2rem;
   height: 9.3rem;
 }
-.card-primary {
-  background-color: #65ace4 !important;
-  color: #ffffff !important;
-}
-.card-warning {
-  background-color: #de9610 !important;
-  color: #ffffff !important;
-}
-.card-secondary {
-  background-color: #fbfbfb !important;
-  color: #040404 !important;
-}
 .card-text {
   font-size: 2.5rem;
 }
