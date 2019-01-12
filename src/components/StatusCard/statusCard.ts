@@ -1,11 +1,42 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Emit } from 'vue-property-decorator'
 
 @Component
 export default class StatusCard extends Vue {
-  @Prop() private members!: any
-  @Prop() private states!: any
+  @Prop() public members!: firebase.database.DataSnapshot | null
+  @Prop() public states!: firebase.database.DataSnapshot | null
 
-  private click(memberId: number): void {
+  private clickCard(memberId: string) {
+    // TODO: @emit()がなぜかきかない。。。
     this.$emit('showModal', memberId)
+  }
+
+  /**
+   * メンバスナップショットの配列を返します。
+   * v-forでループするために必要
+   */
+  private get membersArray(): firebase.database.DataSnapshot[] | null {
+    if (this.members === null) {
+      return null
+    }
+
+    const memArray: firebase.database.DataSnapshot[]  = []
+    this.members.forEach((member) => {
+      memArray.push(member)
+    })
+
+    return memArray
+  }
+
+  /**
+   * メンバの現在の在室状況マスタを取得します。
+   * @param member メンバスナップショット
+   */
+  private getStatus(member: firebase.database.DataSnapshot | null): firebase.database.DataSnapshot | null {
+    if (member === null || this.states === null) {
+      return null
+    }
+
+    const statusId = member.child('status').val()
+    return this.states.child(statusId)
   }
 }

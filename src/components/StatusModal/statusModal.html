@@ -2,14 +2,14 @@
   size="lg"
   hide-footer
   centered
-  :title="memberName"
-  :header-class="status.color"
   v-model="modalShow"
-  v-if="members !== undefined && states !== undefined && memberId !== -1">
-  <h4 class="display-3" :class="'text-' + status.color">{{ status.name }}</h4>
+  v-if="member !== null && states !== null"
+  :title="memberName"
+  :header-class="status.child('color').val()">
+  <h4 class="display-3" :class="'text-' + status.child('color').val()">{{ status.child('name').val() }}</h4>
   <hr />
   <h6>在室状況更新：</h6>
-  <b-button-group size="lg" v-for="state in states">
-    <b-button class="btn-status" :class="state.color" @click="updateStatus(state.status_id)">{{ state.name }}</b-button>
+  <b-button-group size="lg" v-for="state in statesArray" :key="state.key">
+    <b-button class="btn-status" :class="state.child('color').val()" @click="updateStatus(status.key)">{{ status.child('name').val() }}</b-button>
   </b-button-group>
 </b-modal>

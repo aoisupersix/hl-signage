@@ -2,7 +2,7 @@
 <template>
   <div id="main">
     <StatusCard :members="members" :states="states" @showModal="showModal" />
-    <StatusModal v-model="modalShow" :members="members" :states="states" :member-id="modalShowingMemberId" />
+    <StatusModal v-model="modalShow" :member="modalShowingMember" :states="states" />
   </div>
 </template>
 
@@ -19,23 +19,39 @@ import StatusModal from '../components/StatusModal/StatusModal.vue'
   },
 })
 export default class Main extends Vue {
+  /**
+   * DBの在室状況マスタ
+   */
+  private states: firebase.database.DataSnapshot | null = null
 
-  private states = []
-  private members = []
-  private modalShowingMemberId = -1
+  /**
+   * DBのメンバ情報
+   */
+  private members: firebase.database.DataSnapshot | null = null
+
+  /**
+   * モーダルで表示するメンバ情報
+   */
+  private modalShowingMember: firebase.database.DataSnapshot | null = null
+
+  /**
+   * モーダルを表示しているか？
+   * 双方向バインド
+   */
   private modalShow: boolean = false
 
   public async created(): Promise<void> {
-    const stateSnap = await firebaseDatabase.ref('status').once('value')
-    this.states = stateSnap.val()
+    this.states = await firebaseDatabase.ref('status').once('value')
     firebaseDatabase.ref('members').on('value', (snap) => {
-      this.members = snap!.val()
+      this.members = snap
     })
   }
 
-  private showModal(memberId: number): void {
-    this.modalShowingMemberId = memberId
-    this.modalShow = true
+  private showModal(memberId: string): void {
+    if (this.members !== null) {
+      this.modalShowingMember = this.members.child(memberId)
+      this.modalShow = true
+    }
   }
 
 }

@@ -11,50 +11,77 @@ export default class StatusModal extends Vue {
   @Prop() public value!: boolean
 
   /**
-   * DBのメンバー情報
+   * モーダルで表示するDBのメンバー情報
    */
-  @Prop() public members!: any
+  @Prop() public member!: firebase.database.DataSnapshot | null
 
   /**
    * DBのステータス情報
    */
-  @Prop() public states!: any
+  @Prop() public states!: firebase.database.DataSnapshot | null
 
   /**
    * モーダルで表示するメンバーID
    */
   @Prop() public memberId!: string
 
-  @Emit()
-  public input(value: boolean) { }
+  /**
+   * モーダルの開閉フラグが変更された際に親コンポーネントのイベントを発火します。
+   * v-modelで双方向バインドを実現するために必要。
+   * @param value モーダルを開いているか？
+   */
+  @Emit() public input(value: boolean) { }
 
+  /**
+   * Propを直接触らずにv-modelを実現するため
+   */
   private get modalShow(): boolean {
     return this.value
   }
 
+  /**
+   * Propを直接触らずにv-modelを実現するため
+   */
   private set modalShow(value: boolean) {
     this.input(value)
   }
 
   /**
-   * モーダルで表示するメンバー情報を取得します。
+   * 在室状況マスタのスナップショットを配列にして返します。
+   * v-forでループするために必要
    */
-  private get member(): any {
-    return this.members[this.memberId]
+  private get statesArray(): firebase.database.DataSnapshot[] | null {
+    if (this.states === null) {
+      return null
+    }
+
+    const stateArray: firebase.database.DataSnapshot[] = []
+    this.states.forEach((state) => {
+      stateArray.push(state)
+    })
+    return stateArray
   }
 
   /**
    * モーダルで表示するメンバーの在室状況マスタを取得します。
    */
-  private get status(): any {
-    return this.states[this.member.status]
+  private get status(): firebase.database.DataSnapshot | null {
+    if (this.member === null || this.states === null) {
+      return null
+    }
+
+    const statusId = this.member.child('status').val()
+    return this.states.child(statusId)
   }
 
   /**
    * メンバー名を取得します
    */
-  private get memberName(): string {
-    return this.member.last_name + ' ' + this.member.first_name
+  private get memberName(): string | null {
+    if (this.member === null) {
+      return null
+    }
+    return this.member.child('last_name').val() + ' ' + this.member.child('first_name').val()
   }
 
   /**
@@ -63,9 +90,12 @@ export default class StatusModal extends Vue {
    */
   private updateStatus(statusId: string) {
     // TODO Authが必要な処理
-    firebaseDatabase.ref('members/' + this.member.member_id).update({
-      status: statusId
-    })
+    if (this.member !== null) {
+      firebaseDatabase.ref('members/' + this.member.key).update({
+        status: statusId
+      })
+    }
+
     this.modalShow = false
   }
 }

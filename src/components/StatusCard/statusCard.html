@@ -1,13 +1,14 @@
 <div id="status-card">
   <b-card no-body
     class="text-center status-card card-primary"
-    v-for="member in members"
-    :key="member.member_id"
-    :class="states[member.status].color">
-    <a href="#" class="btn btn-fix" @click="click(member.member_id)">
-      <h4 class="card-header">{{ member.last_name + " " + member.first_name }}</h4>
+    v-if="members !== null && states !== null"
+    v-for="member in membersArray"
+    :key="member.key"
+    :class="getStatus(member).child('color').val()">
+    <a href="#" class="btn btn-fix" @click="clickCard(member.key)">
+      <h4 class="card-header">{{ member.child('last_name').val() + " " + member.child('first_name').val() }}</h4>
       <b-card-body>
-        <p class="card-text">{{ states[member.status].name }}</p>
+        <p class="card-text">{{ getStatus(member).child('name').val() }}</p>
       </b-card-body>
     </a>
   </b-card>

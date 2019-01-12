@@ -25,7 +25,6 @@ export default class App extends Vue {
     const states = await firebaseDatabase.ref('status').once('value')
     states.forEach((snap) => {
       const colorName = snap.child('color').val()
-      console.log('--bg-color-' + colorName + '->' + snap.child('hcolor-bg').val())
       this.styles['--bg-color-' + colorName] = snap.child('hcolor-bg').val()
       this.styles['--text-color-' + colorName] = snap.child('hcolor-text').val()
     })
