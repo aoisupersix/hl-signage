@@ -70,4 +70,17 @@ export default class App extends Vue {
   white-space: normal;
   color: inherit !important;
   }
+
+.primary {
+  background-color: #65ace4 !important;
+  color: #ffffff !important;
+}
+.warning {
+  background-color: #de9610 !important;
+  color: #ffffff !important;
+}
+.secondary {
+  background-color: #fbfbfb !important;
+  color: #040404 !important;
+}
 </style>
