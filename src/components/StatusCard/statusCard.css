@@ -1,0 +1,29 @@
+.status-card {
+  display: inline-block !important;
+  margin: 5px;
+  width: 11.2rem;
+  height: 9.3rem;
+}
+.card-primary {
+  background-color: #65ace4 !important;
+  color: #ffffff !important;
+}
+.card-warning {
+  background-color: #de9610 !important;
+  color: #ffffff !important;
+}
+.card-secondary {
+  background-color: #fbfbfb !important;
+  color: #040404 !important;
+}
+.card-text {
+  font-size: 2.5rem;
+}
+.btn-fix {
+ width: 11.2rem;
+ height: 9.3rem;
+ padding: 0 !important;
+ border: none !important;
+ white-space: normal;
+ color: inherit !important;
+ }

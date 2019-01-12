@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './App.vue';
+import App from './views/App.vue';
 import BootstrapVue from 'bootstrap-vue';
 import Firebase from 'firebase/app';
 import { firebaseConfig } from '@/firebaseConfig';
