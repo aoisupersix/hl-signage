@@ -1,36 +1,27 @@
 <template>
 <div id="app">
   <h1 class="display-1" style="text-align: center;">Hayakawa Laboratory</h1>
-  <div class="container-fluid">
-    <b-card no-body
-      class="text-center status-card card-primary"
-      v-for="member in members"
-      :key="member"
-      :class="'card-' + states[member.status].color">
-      <b-link to="/" class="btn btn-fix">
-        <h4 class="card-header">{{ member.last_name + " " + member.first_name }}</h4>
-        <b-card-body>
-          <p class="card-text">{{ states[member.status].name }}</p>
-        </b-card-body>
-      </b-link>
-    </b-card>
-  </div>
+  <StatusCard :members="members" :states="states" @showModal="showModal" />
 </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { firebaseDatabase } from '@/main';
-import CardList from './components/CardList.vue';
+import StatusCard from './components/StatusCard/StatusCard.vue';
 
 @Component({
   components: {
-    CardList,
+    StatusCard,
   },
 })
 export default class App extends Vue {
   private states = [];
   private members = [];
+
+  private showModal(memberId: number): void {
+    console.log('showModal' + memberId);
+  }
 
   public async created(): Promise<void> {
     const stateSnap = await firebaseDatabase.ref('status').once('value');

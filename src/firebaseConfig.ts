@@ -3,4 +3,4 @@ export const firebaseConfig = {
   authDomain: 'hlmanager-32609.firebaseapp.com',
   databaseURL: 'https://hlmanager-32609.firebaseio.com',
   storageBucket: 'hlmanager-32609.appspot.com',
-}
+};
