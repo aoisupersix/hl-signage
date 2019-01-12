@@ -38,10 +38,6 @@ export default class App extends Vue {
     this.modalShow = true
   }
 
-  private changeModalStatus(isShowing: boolean): void {
-    console.log('isShowing:' + isShowing)
-    this.modalShow = isShowing
-  }
 }
 </script>
 <style>
