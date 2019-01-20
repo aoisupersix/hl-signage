@@ -1,18 +1,28 @@
+#status-card {
+  /* カードサイズのデフォルト定義 */
+  --card-width: 10rem;
+  --card-height: 9rem;
+  --card-margin: 5px;
+}
 .status-card {
   display: inline-block !important;
-  margin: 5px;
-  width: 11.2rem;
-  height: 9.3rem;
+  margin: var(--card-margin);
+  min-width: 10rem;
+  min-height: 9rem;
+  width: var(--card-width);
+  height: var(--card-height);
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 .card-text {
-  font-size: 2.5rem;
+  font-size: 3em;
   font-weight: bolder;
 }
 .btn-fix {
- width: 11.2rem;
- height: 9.3rem;
+ width: var(--card-width);
+ height: var(--card-height);
  padding: 0 !important;
  border: none !important;
- white-space: normal;
  color: inherit !important;
  }
