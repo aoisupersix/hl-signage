@@ -10,8 +10,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { firebaseDatabase } from '@/main'
 import Main from './Main.vue'
-import Setting from '@/setting'
-import Store from '@/store'
+import Setting from '@/store/setting'
+import Store from '@/store/store'
 
 @Component({
   components: {
