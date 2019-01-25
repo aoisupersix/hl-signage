@@ -1,5 +1,5 @@
 /**
- * 設定保持
+ * 設定状態保持クラス
  * 設定項目を追加＆削除する場合はこのクラスに改良を加える必要あり
  */
 export default class Setting {
@@ -41,7 +41,9 @@ export default class Setting {
         this.getSettings()
     }
 
-    constructor(private storage: Storable = localStorage) { }
+    constructor(private storage: Storable = localStorage) {
+        this.getSettings()
+    }
 
     private getSettings() {
         // ストレージから値を読み込み
