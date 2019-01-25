@@ -1,6 +1,7 @@
 <!-- 全てのViewの元となるベースViewです -->
 <template>
 <div id="app" :style="styles">
+  <p>{{ setting.cardWidth }}</p>
   <h1 class="display-1" style="text-align: center;">Hayakawa Laboratory</h1>
   <Main />
 </div>
@@ -10,6 +11,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { firebaseDatabase } from '@/main'
 import Main from './Main.vue'
+import Setting from '@/setting'
+import Store from '@/store'
 
 @Component({
   components: {
@@ -19,6 +22,8 @@ import Main from './Main.vue'
 export default class App extends Vue {
 
   private styles: { [key: string]: string } = {}
+
+  private setting: Setting = Store.setting
 
   public async created(): Promise<void> {
     // ステータスカラーをDBから取得して設定

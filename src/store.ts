@@ -8,3 +8,6 @@ export class Store {
 
     constructor(public setting: Setting = new Setting()) { }
 }
+
+const store = new Store()
+export default store
