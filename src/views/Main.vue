@@ -1,6 +1,8 @@
 <!-- メインView -->
 <template>
   <div id="main">
+    <h1 class="display-3" style="text-align: center;">Hayakawa Laboratory <b-button class="setting"><font-awesome-icon icon="cog" /></b-button></h1>
+    
     <StatusCard :members="members" :states="states" @showModal="showModal" />
     <StatusModal v-model="modalShow" :member="modalShowingMember" :states="states" />
   </div>

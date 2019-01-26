@@ -3,9 +3,15 @@ import App from './views/App.vue';
 import BootstrapVue from 'bootstrap-vue';
 import Firebase from 'firebase/app';
 import { firebaseConfig } from '@/firebaseConfig';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'firebase/database';
+
+library.add(faCog)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

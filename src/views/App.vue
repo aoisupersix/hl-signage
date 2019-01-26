@@ -1,7 +1,6 @@
 <!-- 全てのViewの元となるベースViewです -->
 <template>
 <div id="app" :style="styles">
-  <h1 class="display-1" style="text-align: center;">Hayakawa Laboratory</h1>
   <Main />
 </div>
 </template>
