@@ -12,7 +12,7 @@ export default class Setting {
     /**
      * カード高さのローカルストレージキー
      */
-    public static STORAGE_KEY_CARD_HEIGHT = 'hl-signage.card-width'
+    public static STORAGE_KEY_CARD_HEIGHT = 'hl-signage.card-height'
 
     /**
      * カード幅の初期値
