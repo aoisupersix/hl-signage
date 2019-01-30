@@ -5,16 +5,18 @@
   v-model="modalShow"
   title="設定">
   <b-form>
-    <b-form-group
-      label="カード幅:"
-      label-for="cardWidth">
-      <b-form-input id="cardWidth" type="range" v-model="setting.cardWidth" min="10" max="20" step="0.1" />
-    </b-form-group>
-    <b-form-group
-      label="カード高さ:"
-      label-for="cardHeight">
-      <b-form-input id="cardHeight" type="range" v-model="setting.cardHeight" min="10" max="20" step="0.1" />
-    </b-form-group>
+    <b-container fluid>
+      <b-row>
+        <b-col sm="2"><label>カード幅:</label></b-col>
+        <b-col sm="8"><b-form-input type="range" v-model="setting.cardWidth" min="10" max="20" step="0.1" /></b-col>
+        <b-col sm="2"><b-form-input readonly type="text" v-model="setting.cardWidth"/></b-col>
+      </b-row>
+      <b-row>
+          <b-col sm="2"><label>カード高さ:</label></b-col>
+          <b-col sm="8"><b-form-input type="range" v-model="setting.cardHeight" min="10" max="20" step="0.1" /></b-col>
+          <b-col sm="2"><b-form-input readonly type="text" v-model="setting.cardHeight"/></b-col>
+        </b-row>
+    </b-container>
     <b-button @click="setDefault">デフォルト</b-button>
   </b-form>
 </b-modal>
