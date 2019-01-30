@@ -8,12 +8,12 @@
     <b-form-group
       label="カード幅:"
       label-for="cardWidth">
-      <b-form-input id="cardWidth" type="range" v-model="cardWidth" min="10" max="20" step="0.1" />
+      <b-form-input id="cardWidth" type="range" v-model="setting.cardWidth" min="10" max="20" step="0.1" />
     </b-form-group>
     <b-form-group
       label="カード高さ:"
       label-for="cardHeight">
-      <b-form-input id="cardHeight" type="range" v-model="cardHeight" min="10" max="20" step="0.1" />
+      <b-form-input id="cardHeight" type="range" v-model="setting.cardHeight" min="10" max="20" step="0.1" />
     </b-form-group>
     <b-button @click="setDefault">デフォルト</b-button>
   </b-form>
