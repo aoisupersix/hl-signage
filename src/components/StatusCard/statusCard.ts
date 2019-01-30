@@ -8,8 +8,6 @@ export default class StatusCard extends Vue {
   @Prop() public members!: firebase.database.DataSnapshot | null
   @Prop() public states!: firebase.database.DataSnapshot | null
 
-  private setting: Setting = Store.setting
-
   private clickCard(memberId: string) {
     // TODO: @emit()がなぜかきかない。。。
     this.$emit('showModal', memberId)

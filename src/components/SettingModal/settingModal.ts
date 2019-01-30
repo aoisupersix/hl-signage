@@ -22,23 +22,6 @@ export default class SettingModal extends Vue {
   private cardHeight: number = Store.setting.cardHeight
 
   /**
-   * モーダルの開閉フラグが変更された際に親コンポーネントのイベントを発火します。
-   * v-modelで双方向バインドを実現するために必要。
-   * @param value モーダルを開いているか？
-   */
-  @Emit() public input(value: boolean) { }
-
-  @Watch('cardWidth')
-  private setCardWidth(value: number) {
-    Store.setting.cardWidth = value
-  }
-
-  @Watch('cardHeight')
-  private setCardHeight(value: number) {
-    Store.setting.cardHeight = value
-  }
-
-  /**
    * Propを直接触らずにv-modelを実現するため
    */
   private get modalShow(): boolean {
@@ -50,6 +33,27 @@ export default class SettingModal extends Vue {
    */
   private set modalShow(value: boolean) {
     this.input(value)
+  }
+
+  /**
+   * モーダルの開閉フラグが変更された際に親コンポーネントのイベントを発火します。
+   * v-modelで双方向バインドを実現するために必要。
+   * @param value モーダルを開いているか？
+   */
+  @Emit() public input(value: boolean): void { }
+
+  @Watch('cardWidth')
+  private setCardWidth(value: number): void {
+    Store.setting.cardWidth = value
+  }
+
+  @Watch('cardHeight')
+  private setCardHeight(value: number): void {
+    Store.setting.cardHeight = value
+  }
+
+  private setDefault(): void {
+    Store.setting.setDefault()
   }
 
 }

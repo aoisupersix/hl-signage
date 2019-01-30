@@ -45,6 +45,14 @@ export default class Setting {
         this.getSettings()
     }
 
+    /**
+     * 設定にデフォルト値を代入します
+     */
+    public setDefault() {
+        this.cardWidth = Setting.DEFAULT_VALUE_CARD_WIDTH
+        this.cardHeight = Setting.DEFAULT_VALUE_CARD_HEIGHT
+    }
+
     private getSettings() {
         // ストレージから値を読み込み
         // 設定を追加＆削除する際はこの処理を変更する必要あり
