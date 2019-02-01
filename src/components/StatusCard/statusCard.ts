@@ -16,7 +16,8 @@ export default class StatusCard extends Vue {
   private get styles(): { [key: string]: string } {
     return {
       '--card-width': Store.setting.cardWidth + 'rem',
-      '--card-height': Store.setting.cardHeight + 'rem'
+      '--card-height': Store.setting.cardHeight + 'rem',
+      '--card-margin': Store.setting.cardMargin + 'px'
     }
   }
 

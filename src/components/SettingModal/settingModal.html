@@ -13,9 +13,14 @@
       </b-row>
       <b-row>
           <b-col sm="2"><label>カード高さ:</label></b-col>
-          <b-col sm="8"><b-form-input type="range" v-model="setting.cardHeight" min="10" max="20" step="0.1" /></b-col>
+          <b-col sm="8"><b-form-input type="range" v-model="setting.cardHeight" min="5" max="20" step="0.1" /></b-col>
           <b-col sm="2"><b-form-input readonly type="text" v-model="setting.cardHeight"/></b-col>
-        </b-row>
+      </b-row>
+      <b-row>
+        <b-col sm="2"><label>カード間隔:</label></b-col>
+        <b-col sm="8"><b-form-input type="range" v-model="setting.cardMargin" min="1" max="20" step="0.1" /></b-col>
+        <b-col sm="2"><b-form-input readonly type="text" v-model="setting.cardMargin"/></b-col>
+    </b-row>
     </b-container>
     <b-button @click="setDefault">デフォルト</b-button>
   </b-form>

@@ -15,6 +15,11 @@ export default class Setting {
     public static STORAGE_KEY_CARD_HEIGHT = 'hl-signage.card-height'
 
     /**
+     * カード間隔のローカスストレージキー
+     */
+    public static STORAGE_KEY_CARD_MARGIN = 'hl-signage.card-margin'
+
+    /**
      * カード幅の初期値
      */
     public static DEFAULT_VALUE_CARD_WIDTH = 11.2
@@ -24,9 +29,15 @@ export default class Setting {
      */
     public static DEFAULT_VALUE_CARD_HEIGHT = 10
 
+    /**
+     * カード間隔の初期値
+     */
+    public static DEFAULT_VALUE_CARD_MARGIN = 5
+
     private state = {
         card_width: 11.2,
         card_height: 10,
+        card_margin: 5,
     }
 
     get cardWidth(): number { return this.state.card_width }
@@ -41,6 +52,12 @@ export default class Setting {
         this.getSettings()
     }
 
+    get cardMargin(): number { return this.state.card_margin }
+    set cardMargin(value: number) {
+        this.storage.setItem(Setting.STORAGE_KEY_CARD_MARGIN, value.toString())
+        this.getSettings()
+    }
+
     constructor(private storage: Storable = localStorage) {
         this.getSettings()
     }
@@ -51,6 +68,7 @@ export default class Setting {
     public setDefault() {
         this.cardWidth = Setting.DEFAULT_VALUE_CARD_WIDTH
         this.cardHeight = Setting.DEFAULT_VALUE_CARD_HEIGHT
+        this.cardMargin = Setting.DEFAULT_VALUE_CARD_MARGIN
     }
 
     private getSettings() {
@@ -60,5 +78,7 @@ export default class Setting {
             Number(this.storage.getItem(Setting.STORAGE_KEY_CARD_WIDTH) || Setting.DEFAULT_VALUE_CARD_WIDTH)
         this.state.card_height =
             Number(this.storage.getItem(Setting.STORAGE_KEY_CARD_HEIGHT) || Setting.DEFAULT_VALUE_CARD_HEIGHT)
+        this.state.card_margin =
+            Number(this.storage.getItem(Setting.STORAGE_KEY_CARD_MARGIN) || Setting.DEFAULT_VALUE_CARD_MARGIN)
     }
 }
