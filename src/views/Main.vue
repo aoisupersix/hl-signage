@@ -5,6 +5,21 @@
       Hayakawa Laboratory
       <b-button @click="showSettingModal"><font-awesome-icon icon="cog" /></b-button>
     </h1>
+    <h6 class="sub-title" style="">
+      <vue-typer
+        class="sub-title"
+        :text='["詳細な在室状況はWebアプリ(https://hlmanager-32609.firebaseapp.com/)から確認して下さい。"]'
+        :repeat='Infinity'
+        :shuffle='false'
+        initial-action='typing'
+        :pre-type-delay='2000'
+        :type-delay='40'
+        :pre-erase-delay='10000'
+        :erase-delay='20'
+        erase-style='backspace'
+        :erase-on-complete='false'
+        caret-animation='blink' />
+    </h6>
     <StatusCard :members="members" :states="states" @showModal="showStatusModal" />
     <SettingModal v-model="settingModalShow" />
     <StatusModal v-model="statusModalShow" :member="modalShowingMember" :states="states" />
@@ -75,4 +90,9 @@ export default class Main extends Vue {
 </script>
 
 <style scoped>
+.sub-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 </style>
